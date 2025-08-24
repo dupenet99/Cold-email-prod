@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   creator: "eVirtualAssistants LLC",
   publisher: "eVirtualAssistants LLC",
   robots: "index, follow",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     title: "Cold Email Machine - Done-For-You Cold Email System",
     description:
