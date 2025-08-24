@@ -54,11 +54,11 @@ export async function POST(request: NextRequest) {
       mode: "subscription",
       line_items: [
         {
-          price: "price_1RwcogBP6nLFGEYdhV2FmvWE", // Domain one-time price
+          price: "price_1RzmT0BP6nLFGEYdILSwoA9C", // Domain one-time price
           quantity: domainQuantity,
         },
         {
-          price: "price_1RwcrDBP6nLFGEYdQCyNWN2k", // Mailbox subscription price
+          price: "price_1RzmT2BP6nLFGEYdvkzNSpKW", // Mailbox subscription price
           quantity: mailboxQuantity,
         },
       ],

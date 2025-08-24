@@ -76,9 +76,9 @@ const FallbackPaymentForm = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           sessionId: `customer_${customerData.customerId}`, // Use customer ID as session identifier
-          domainPriceId: "price_1RwcogBP6nLFGEYdhV2FmvWE", // Domain price ID (one-time)
+          domainPriceId: "price_1RzmT0BP6nLFGEYdILSwoA9C", // Domain price ID (one-time)
           domainQuantity: domainsNeeded,
-          mailboxPriceId: "price_1RwcrDBP6nLFGEYdQCyNWN2k", // Mailbox price ID (subscription)
+          mailboxPriceId: "price_1RzmT2BP6nLFGEYdvkzNSpKW", // Mailbox price ID (subscription)
           mailboxQuantity: mailboxesNeeded,
         }),
       })
@@ -225,9 +225,9 @@ function Success2Content() {
         },
         body: JSON.stringify({
           sessionId: sessionId,
-          domainPriceId: "price_1RwcogBP6nLFGEYdhV2FmvWE", // Domain price ID (one-time)
+          domainPriceId: "price_1RzmT0BP6nLFGEYdILSwoA9C", // Domain price ID (one-time)
           domainQuantity: domainsNeeded,
-          mailboxPriceId: "price_1RwcrDBP6nLFGEYdQCyNWN2k", // Mailbox price ID (subscription)
+          mailboxPriceId: "price_1RzmT2BP6nLFGEYdvkzNSpKW", // Mailbox price ID (subscription)
           mailboxQuantity: mailboxesNeeded,
         }),
       })

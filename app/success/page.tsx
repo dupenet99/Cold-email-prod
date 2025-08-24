@@ -41,7 +41,7 @@ const FallbackPaymentForm = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          priceId: "price_1RwcglBP6nLFGEYdJG9i0SvR", // $397 upsell price ID
+          priceId: "price_1RzmSwBP6nLFGEYdT04GsDOZ", // $397 upsell price ID
           email: email,
           name: name,
         }),
@@ -217,7 +217,7 @@ function SuccessContent() {
         },
         body: JSON.stringify({
           sessionId: sessionId,
-          priceId: "price_1RwcglBP6nLFGEYdJG9i0SvR", // $397 upsell price ID
+          priceId: "price_1RzmSwBP6nLFGEYdT04GsDOZ", // $397 upsell price ID
         }),
       })
 

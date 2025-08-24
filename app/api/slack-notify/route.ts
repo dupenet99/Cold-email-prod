@@ -4,7 +4,8 @@ export async function POST(request: NextRequest) {
   try {
     const { message, type = "info" } = await request.json()
 
-    const slackWebhookUrl = "https://hooks.slack.com/services/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"
+    const slackWebhookUrl =
+      process.env.SLACK_WEBHOOK_URL || "https://hooks.slack.com/services/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"
 
     if (!slackWebhookUrl) {
       console.error("[v0] Slack webhook URL not configured")
@@ -30,7 +31,7 @@ export async function POST(request: NextRequest) {
     }
 
     console.log("[v0] Sending Slack notification:", message)
-    console.log("[v0] Webhook URL:", slackWebhookUrl)
+    console.log("[v0] Webhook URL:", slackWebhookUrl.substring(0, 50) + "...")
     console.log("[v0] Payload:", JSON.stringify(slackPayload))
 
     // Send to Slack
@@ -42,17 +43,28 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify(slackPayload),
     })
 
+    const responseText = await slackResponse.text()
+
     if (!slackResponse.ok) {
-      const errorText = await slackResponse.text()
       console.error("[v0] Slack API error details:", {
         status: slackResponse.status,
         statusText: slackResponse.statusText,
-        body: errorText,
+        body: responseText,
+        webhookUrl: slackWebhookUrl.substring(0, 50) + "...",
       })
-      throw new Error(`Slack API error: ${slackResponse.status} - ${errorText}`)
+
+      // Check for common Slack webhook errors
+      if (slackResponse.status === 404) {
+        console.error("[v0] Slack webhook URL not found - webhook may be expired or invalid")
+      } else if (slackResponse.status === 403) {
+        console.error("[v0] Slack webhook forbidden - webhook may be disabled")
+      }
+
+      throw new Error(`Slack API error: ${slackResponse.status} - ${responseText}`)
     }
 
     console.log("[v0] Slack notification sent successfully")
+    console.log("[v0] Slack response:", responseText)
     return NextResponse.json({ success: true })
   } catch (error: any) {
     console.error("[v0] Slack notification error:", error)

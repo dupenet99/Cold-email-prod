@@ -17,6 +17,21 @@ export default function HomePage() {
     setIsAdminMode(adminParam === "99")
   }, [])
 
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://unpkg.com/@elevenlabs/convai-widget-embed"
+    script.async = true
+    script.type = "text/javascript"
+    document.head.appendChild(script)
+
+    return () => {
+      // Cleanup script on unmount
+      if (document.head.contains(script)) {
+        document.head.removeChild(script)
+      }
+    }
+  }, [])
+
   const scrollToPayment = () => {
     const paymentSection = document.getElementById("payment-section")
     if (paymentSection) {
@@ -116,6 +131,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white text-black">
+      <elevenlabs-convai agent-id="agent_3801k3et7mzefpd8cr12jm1ra5tk"></elevenlabs-convai>
+
       {/* Sticky Header Navigation */}
       <header className="sticky top-0 z-50 bg-black backdrop-blur-sm border-b border-gray-800">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">

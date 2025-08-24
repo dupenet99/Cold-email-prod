@@ -75,6 +75,13 @@ export default function FollowUpPage() {
         "If you have upgraded your package to 'All Done For You', enter your email account to be invited to our Slack workspace for direct communication with your dedicated team.",
       priority: "Medium",
     },
+    {
+      id: "apollo_leads",
+      title: "Get Leads for Your Email Campaign",
+      description:
+        "Apollo is currently the most popular platform for finding high-quality B2B leads. Use our link to access Apollo and start building your prospect list for maximum campaign effectiveness.",
+      priority: "Medium",
+    },
   ]
 
   const getPriorityColor = (priority: string) => {
@@ -328,7 +335,7 @@ export default function FollowUpPage() {
                         <div className="mt-4 p-4 bg-gray-50 rounded-lg">
                           <div className="mb-4">
                             <a
-                              href="https://instantly.ai"
+                              href="https://try.10xrevenue.ai/Instantly"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -461,6 +468,32 @@ export default function FollowUpPage() {
                               Submit Email for Slack Invitation
                             </button>
                           </form>
+                        </div>
+                      )}
+
+                      {task.id === "apollo_leads" && (
+                        <div className="mt-4 p-4 bg-gray-50 rounded-lg">
+                          <div className="mb-4">
+                            <p className="text-sm text-gray-600 mb-4">
+                              Apollo is the industry-leading platform for B2B lead generation. With over 275 million
+                              contacts and advanced search filters, it's the best tool to find your ideal prospects and
+                              build targeted lists for your cold email campaigns.
+                            </p>
+                            <a
+                              href="https://try.10xrevenue.ai/apollo"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                            >
+                              Go to Apollo →
+                            </a>
+                          </div>
+                          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                            <p className="text-blue-800 text-sm">
+                              💡 <strong>No submission required:</strong> Simply use Apollo to build your lead lists.
+                              The better your targeting, the more effective your campaigns will be!
+                            </p>
+                          </div>
                         </div>
                       )}
                     </div>

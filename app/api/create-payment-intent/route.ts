@@ -8,7 +8,16 @@ export async function POST(request: NextRequest) {
       throw new Error("STRIPE_SECRET_KEY environment variable is required")
     }
 
+    if (!secretKey.startsWith("sk_live_") && !secretKey.startsWith("sk_test_")) {
+      throw new Error("Invalid Stripe secret key format")
+    }
+
+    if (secretKey.length < 100) {
+      throw new Error(`Stripe secret key appears truncated (${secretKey.length} chars, expected ~107)`)
+    }
+
     console.log("[v0] Using Stripe secret key:", secretKey.substring(0, 20) + "...")
+    console.log("[v0] Key length:", secretKey.length)
 
     const stripe = new Stripe(secretKey, {
       apiVersion: "2024-06-20",
@@ -113,13 +122,8 @@ export async function POST(request: NextRequest) {
       priceId: priceId,
     })
   } catch (error: any) {
-    console.error("[v0] Error creating payment intent:", error)
-    console.error("[v0] Error details:", {
-      message: error.message,
-      type: error.type,
-      code: error.code,
-      statusCode: error.statusCode,
-    })
+    console.error("[v0] Error creating payment intent:", error.message)
+    console.error("[v0] Error details:", error.message)
     return NextResponse.json(
       {
         error: error.message || "Error creating payment intent",

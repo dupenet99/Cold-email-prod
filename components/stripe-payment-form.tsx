@@ -33,13 +33,13 @@ const CheckoutForm = () => {
 
   const getPriceId = () => {
     if (premiumLeads && prioritySetup) {
-      return "price_1RwcbrBP6nLFGEYduh1u5XPu" // Base + Both upsells
+      return "price_1RzmStBP6nLFGEYdbqAMvxv6" // Base + Both upsells
     } else if (prioritySetup && !premiumLeads) {
-      return "price_1RwcaaBP6nLFGEYdICId9aU5" // Base + Priority Setup only
+      return "price_1RzmSlBP6nLFGEYdqPA5LaId" // Base + Priority Setup only
     } else if (premiumLeads && !prioritySetup) {
-      return "price_1RwcbCBP6nLFGEYd3tibr6dY" // Base + Premium Leads only
+      return "price_1RzmSqBP6nLFGEYd6cuAiNrJ" // Base + Premium Leads only
     } else {
-      return "price_1RwX9xBP6nLFGEYdwSJoBi3t" // Base only
+      return "price_1RzmShBP6nLFGEYdNa1nn9vp" // Base only
     }
   }
 
