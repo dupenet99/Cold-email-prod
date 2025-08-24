@@ -53,6 +53,7 @@ const FallbackPaymentForm = ({
 
       if (pmError) {
         setError(pmError.message || "Failed to create payment method")
+        setIsLoading(false)
         return
       }
 
@@ -113,9 +114,9 @@ const FallbackPaymentForm = ({
       }
     } catch (err: any) {
       setError(err.message || "Payment failed")
+    } finally {
+      setIsLoading(false)
     }
-
-    setIsLoading(false)
   }
 
   return (
@@ -267,13 +268,15 @@ function Success2Content() {
         })
         window.location.href = `/success-3?${params.toString()}`
       } else {
+        setIsProcessing(false)
         alert("Payment failed: " + result.error)
+        return
       }
     } catch (error) {
       console.error("Payment error:", error)
-      alert("Payment failed. Please try again.")
-    } finally {
       setIsProcessing(false)
+      alert("Payment failed. Please try again.")
+      return
     }
   }
 
