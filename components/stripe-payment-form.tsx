@@ -133,7 +133,7 @@ const CheckoutForm = () => {
             },
             body: JSON.stringify({
               email: email,
-              companyName: name,
+              emailName: name,
               upsell1: premiumLeads,
               upsell2: prioritySetup,
             }),

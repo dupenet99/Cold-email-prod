@@ -110,7 +110,7 @@ const FallbackPaymentForm = ({
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               email: email,
-              name: name,
+              emailName: name, // Fixed field mapping: full name goes to emailName parameter
               upsell4: true,
             }),
           })
@@ -286,7 +286,7 @@ function SuccessContent() {
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 email: finalEmail,
-                name: finalName,
+                emailName: finalName, // Fixed field mapping: full name goes to emailName parameter
                 upsell4: true,
               }),
             })
@@ -325,7 +325,7 @@ function SuccessContent() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             email: customerEmail,
-            name: customerName,
+            emailName: customerName, // Fixed field mapping: full name goes to emailName parameter
             upsell4: false,
           }),
         })

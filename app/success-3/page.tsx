@@ -108,6 +108,7 @@ export default function Success3Page() {
           body: JSON.stringify({
             email: companyEmail,
             name: fullName,
+            companyName: formData.companyName,
             companyDescription: formData.companyDescription,
             companyLinks: formData.companyLinks,
             salesPitch: formData.salesPitch,
