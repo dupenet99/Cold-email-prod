@@ -10,22 +10,23 @@ import { slackNotifications } from "@/lib/slack-notifications"
 const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 const stripePromise = loadStripe(publishableKey)
 
-const FallbackPaymentForm = () => {
+const FallbackPaymentForm = ({ urlFullName, urlEmail }: { urlFullName?: string | null; urlEmail?: string | null }) => {
   const stripe = useStripe()
   const elements = useElements()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
   const [email, setEmail] = useState(() => {
     if (typeof window !== "undefined") {
-      return sessionStorage.getItem("customerEmail") || ""
+      return urlEmail || sessionStorage.getItem("customerEmail") || ""
     }
-    return ""
+    return urlEmail || ""
   })
   const [name, setName] = useState(() => {
     if (typeof window !== "undefined") {
-      return sessionStorage.getItem("customerName") || ""
+      return urlFullName || sessionStorage.getItem("customerName") || ""
     }
-    return ""
+    return urlFullName || ""
   })
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -498,7 +499,7 @@ function SuccessContent() {
         <div className="text-center space-y-4">
           {!sessionId ? (
             <Elements stripe={stripePromise}>
-              <FallbackPaymentForm />
+              <FallbackPaymentForm urlFullName={urlFullName} urlEmail={urlEmail} />
               <div className="mt-6">
                 <button
                   onClick={() => (window.location.href = "/success-1")}

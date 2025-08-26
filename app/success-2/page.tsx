@@ -14,22 +14,30 @@ const FallbackPaymentForm = ({
   domainsNeeded,
   mailboxesNeeded,
   totalCost,
-}: { domainsNeeded: number; mailboxesNeeded: number; totalCost: number }) => {
+  urlFullName,
+  urlEmail,
+}: {
+  domainsNeeded: number
+  mailboxesNeeded: number
+  totalCost: number
+  urlFullName?: string | null
+  urlEmail?: string | null
+}) => {
   const stripe = useStripe()
   const elements = useElements()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [email, setEmail] = useState(() => {
     if (typeof window !== "undefined") {
-      return sessionStorage.getItem("customerEmail") || ""
+      return urlEmail || sessionStorage.getItem("customerEmail") || ""
     }
-    return ""
+    return urlEmail || ""
   })
   const [name, setName] = useState(() => {
     if (typeof window !== "undefined") {
-      return sessionStorage.getItem("customerName") || ""
+      return urlFullName || sessionStorage.getItem("customerName") || ""
     }
-    return ""
+    return urlFullName || ""
   })
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -378,6 +386,8 @@ function Success2Content() {
                     domainsNeeded={domainsNeeded}
                     mailboxesNeeded={mailboxesNeeded}
                     totalCost={totalCost}
+                    urlFullName={urlFullName}
+                    urlEmail={urlEmail}
                   />
                 </Elements>
               </div>
