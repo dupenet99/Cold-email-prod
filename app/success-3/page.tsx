@@ -394,13 +394,12 @@ export default function Success3Page() {
 
               {/* Lead Redirection */}
               <div className="border-t pt-8">
-                <label className="block text-lg font-semibold text-gray-700 mb-2">Redirection for Leads *</label>
+                <label className="block text-lg font-semibold text-gray-700 mb-2">Redirection for Leads</label>
                 <input
                   type="url"
                   name="leadRedirection"
                   value={formData.leadRedirection}
                   onChange={handleInputChange}
-                  required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="URL, calendar link, or where we should send your leads"
                 />
